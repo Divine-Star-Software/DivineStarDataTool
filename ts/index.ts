@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import * as readline from "node:readline";
 import * as fs from "fs/promises";
 import { DSCommander } from "dscom";
