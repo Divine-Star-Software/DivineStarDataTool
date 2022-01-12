@@ -20,7 +20,7 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "dscom": "^1.0.5",
+    "dscom": "^1.0.51",
     "dsdata": "^1.0.32"
   }
 }
