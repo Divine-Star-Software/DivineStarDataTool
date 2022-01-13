@@ -64,6 +64,20 @@ var dsData = new DivineStarData(fs);
                     desc: "Decompress a json file.",
                     type: "string",
                     required: false,
+                })
+                    .addParam({
+                    name: "level",
+                    flag: "l",
+                    desc: "Set compression level. 1 - 9",
+                    type: "number",
+                    required: false,
+                })
+                    .addParam({
+                    name: "info",
+                    flag: "i",
+                    desc: "Get infor about dsdt.",
+                    type: "boolean",
+                    required: false,
                 });
                 return [4 /*yield*/, dsCom.initProgramInput()];
             case 1:
@@ -75,6 +89,12 @@ var dsData = new DivineStarData(fs);
                     .ifParamIsset("c", function (value, args) {
                     doing = "compressing";
                     path = value;
+                })
+                    .ifParamIsset("l", function (value, args) {
+                    dsData.setCompressionLevel(Number(value));
+                })
+                    .ifParamIsset("i", function (value, args) {
+                    dsCom.log([dsCom.getString("star"), dsCom.getString("title")]).exit();
                 });
                 if (!(doing == "compressing" && path != "")) return [3 /*break*/, 6];
                 _a.label = 2;
@@ -84,6 +104,7 @@ var dsData = new DivineStarData(fs);
             case 3:
                 data = _a.sent();
                 jsonData = JSON.parse(data);
+                dsData.setCompressionLevel(1);
                 newPath = path.replace(".json", ".dsd");
                 return [4 /*yield*/, dsData.write(newPath, jsonData)];
             case 4:

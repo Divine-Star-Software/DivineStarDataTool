@@ -12,6 +12,8 @@ A tool to compress and un-compress dsd files.
 ```console
 # Compress File
 dsdt -c file.json
+# Set Level 1 - 9
+dsdt -l 5 -c file.json
 # De-Compress File
 dsdt -d file.dsd
 ```
